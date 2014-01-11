@@ -569,7 +569,7 @@ File *FileFILEOpen(const String& path, int flags, int mode)
 // Helper function: obtain file information time.
 bool    SysFile::GetFileStat(FileStat* pfileStat, const String& path)
 {
-#if defined(OVR_OS_WIN32)
+#if defined(OVR_OS_WIN32) && !defined(__MINGW32__)
     // 64-bit implementation on Windows.
     struct __stat64 fileStat;
     // Stat returns 0 for success.
