@@ -28,6 +28,6 @@ limitations under the License.
 #define OVR_MAJOR_VERSION 0
 #define OVR_MINOR_VERSION 2
 #define OVR_BUILD_VERSION 5
-#define OVR_VERSION_STRING "0.2.5"
+#define OVR_VERSION_STRING "0.2.5_Riot"
 
 #endif
