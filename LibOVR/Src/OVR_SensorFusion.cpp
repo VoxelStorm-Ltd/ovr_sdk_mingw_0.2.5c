@@ -361,8 +361,8 @@ bool SensorFusion::SaveMagCalibration(const char* calibrationName) const
 
     // time stamp the calibration
     char time_str[64];
-   
-#ifdef OVR_OS_WIN32
+
+#if not defined(__MINGW32__) && defined(OVR_OS_WIN32)
     struct tm caltime;
     localtime_s(&caltime, &MagCalibrationTime);
     strftime(time_str, 64, "%Y-%m-%d %H:%M:%S", &caltime);
@@ -560,8 +560,7 @@ bool SensorFusion::LoadMagCalibration(const char* calibrationName)
 
                                     tm ct;
                                     memset(&ct, 0, sizeof(tm));
-                            
-#ifdef OVR_OS_WIN32
+#if defined(OVR_OS_WIN32) && !defined(__MINGW32__)
                                     struct tm nowtime;
                                     localtime_s(&nowtime, &now);
                                     ct.tm_isdst = nowtime.tm_isdst;
