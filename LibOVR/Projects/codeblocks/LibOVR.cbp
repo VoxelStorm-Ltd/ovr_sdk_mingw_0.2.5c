@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="LibOVR" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug Win32">
+				<Option output="LibOVR_Msvc2010" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-DOVR_BUILD_DEBUG" />
+					<Add option="-DWIN32" />
+					<Add option="-D_DEBUG" />
+					<Add option="-D_LIB" />
+				</Compiler>
+			</Target>
+			<Target title="Debug x64">
+				<Option output="LibOVR_Msvc2010" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-DOVR_BUILD_DEBUG" />
+					<Add option="-DWIN32" />
+					<Add option="-D_WIN64" />
+					<Add option="-D_DEBUG" />
+					<Add option="-D_LIB" />
+				</Compiler>
+			</Target>
+			<Target title="Release x64">
+				<Option output="LibOVR_Msvc2010" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-DWIN32" />
+					<Add option="-D_WIN64" />
+					<Add option="-DNDEBUG" />
+					<Add option="-D_LIB" />
+				</Compiler>
+			</Target>
+			<Target title="Release Win32">
+				<Option output="LibOVR_Msvc2010" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-DWIN32" />
+					<Add option="-DNDEBUG" />
+					<Add option="-D_LIB" />
+				</Compiler>
+			</Target>
+		</Build>
+		<Unit filename="../../Include/OVR.h" />
+		<Unit filename="../../Src/Kernel/OVR_Alg.cpp" />
+		<Unit filename="../../Src/Kernel/OVR_Alg.h" />
+		<Unit filename="../../Src/Kernel/OVR_Allocator.cpp" />
+		<Unit filename="../../Src/Kernel/OVR_Allocator.h" />
+		<Unit filename="../../Src/Kernel/OVR_Array.h" />
+		<Unit filename="../../Src/Kernel/OVR_Atomic.cpp" />
+		<Unit filename="../../Src/Kernel/OVR_Atomic.h" />
+		<Unit filename="../../Src/Kernel/OVR_Color.h" />
+		<Unit filename="../../Src/Kernel/OVR_ContainerAllocator.h" />
+		<Unit filename="../../Src/Kernel/OVR_File.cpp" />
+		<Unit filename="../../Src/Kernel/OVR_File.h" />
+		<Unit filename="../../Src/Kernel/OVR_FileFILE.cpp" />
+		<Unit filename="../../Src/Kernel/OVR_Hash.h" />
+		<Unit filename="../../Src/Kernel/OVR_KeyCodes.h" />
+		<Unit filename="../../Src/Kernel/OVR_List.h" />
+		<Unit filename="../../Src/Kernel/OVR_Log.cpp" />
+		<Unit filename="../../Src/Kernel/OVR_Log.h" />
+		<Unit filename="../../Src/Kernel/OVR_Math.cpp" />
+		<Unit filename="../../Src/Kernel/OVR_Math.h" />
+		<Unit filename="../../Src/Kernel/OVR_RefCount.cpp" />
+		<Unit filename="../../Src/Kernel/OVR_RefCount.h" />
+		<Unit filename="../../Src/Kernel/OVR_Std.cpp" />
+		<Unit filename="../../Src/Kernel/OVR_Std.h" />
+		<Unit filename="../../Src/Kernel/OVR_String.cpp" />
+		<Unit filename="../../Src/Kernel/OVR_String.h" />
+		<Unit filename="../../Src/Kernel/OVR_StringHash.h" />
+		<Unit filename="../../Src/Kernel/OVR_String_FormatUtil.cpp" />
+		<Unit filename="../../Src/Kernel/OVR_String_PathUtil.cpp" />
+		<Unit filename="../../Src/Kernel/OVR_SysFile.cpp" />
+		<Unit filename="../../Src/Kernel/OVR_SysFile.h" />
+		<Unit filename="../../Src/Kernel/OVR_System.cpp" />
+		<Unit filename="../../Src/Kernel/OVR_System.h" />
+		<Unit filename="../../Src/Kernel/OVR_Threads.h" />
+		<Unit filename="../../Src/Kernel/OVR_ThreadsWinAPI.cpp" />
+		<Unit filename="../../Src/Kernel/OVR_Timer.cpp" />
+		<Unit filename="../../Src/Kernel/OVR_Timer.h" />
+		<Unit filename="../../Src/Kernel/OVR_Types.h" />
+		<Unit filename="../../Src/Kernel/OVR_UTF8Util.cpp" />
+		<Unit filename="../../Src/Kernel/OVR_UTF8Util.h" />
+		<Unit filename="../../Src/OVR_Device.h" />
+		<Unit filename="../../Src/OVR_DeviceConstants.h" />
+		<Unit filename="../../Src/OVR_DeviceHandle.cpp" />
+		<Unit filename="../../Src/OVR_DeviceHandle.h" />
+		<Unit filename="../../Src/OVR_DeviceImpl.cpp" />
+		<Unit filename="../../Src/OVR_DeviceImpl.h" />
+		<Unit filename="../../Src/OVR_DeviceMessages.h" />
+		<Unit filename="../../Src/OVR_HIDDevice.h" />
+		<Unit filename="../../Src/OVR_HIDDeviceBase.h" />
+		<Unit filename="../../Src/OVR_HIDDeviceImpl.h" />
+		<Unit filename="../../Src/OVR_JSON.cpp" />
+		<Unit filename="../../Src/OVR_JSON.h" />
+		<Unit filename="../../Src/OVR_LatencyTestImpl.cpp" />
+		<Unit filename="../../Src/OVR_LatencyTestImpl.h" />
+		<Unit filename="../../Src/OVR_Profile.cpp" />
+		<Unit filename="../../Src/OVR_Profile.h" />
+		<Unit filename="../../Src/OVR_SensorFilter.cpp" />
+		<Unit filename="../../Src/OVR_SensorFilter.h" />
+		<Unit filename="../../Src/OVR_SensorFusion.cpp" />
+		<Unit filename="../../Src/OVR_SensorFusion.h" />
+		<Unit filename="../../Src/OVR_SensorImpl.cpp" />
+		<Unit filename="../../Src/OVR_SensorImpl.h" />
+		<Unit filename="../../Src/OVR_ThreadCommandQueue.cpp" />
+		<Unit filename="../../Src/OVR_ThreadCommandQueue.h" />
+		<Unit filename="../../Src/OVR_Win32_DeviceManager.cpp" />
+		<Unit filename="../../Src/OVR_Win32_DeviceManager.h" />
+		<Unit filename="../../Src/OVR_Win32_DeviceStatus.cpp" />
+		<Unit filename="../../Src/OVR_Win32_DeviceStatus.h" />
+		<Unit filename="../../Src/OVR_Win32_HIDDevice.cpp" />
+		<Unit filename="../../Src/OVR_Win32_HIDDevice.h" />
+		<Unit filename="../../Src/OVR_Win32_HMDDevice.cpp" />
+		<Unit filename="../../Src/OVR_Win32_HMDDevice.h" />
+		<Unit filename="../../Src/OVR_Win32_SensorDevice.cpp" />
+		<Unit filename="../../Src/OVR_Win32_SensorDevice.h" />
+		<Unit filename="../../Src/Util/Util_LatencyTest.cpp" />
+		<Unit filename="../../Src/Util/Util_LatencyTest.h" />
+		<Unit filename="../../Src/Util/Util_Render_Stereo.cpp" />
+		<Unit filename="../../Src/Util/Util_Render_Stereo.h" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
