@@ -59,6 +59,9 @@
 				</Compiler>
 			</Target>
 		</Build>
+		<Compiler>
+			<Add option="-D_WIN32_WINNT=0x0501" />
+		</Compiler>
 		<Unit filename="../../Include/OVR.h" />
 		<Unit filename="../../Src/Kernel/OVR_Alg.cpp" />
 		<Unit filename="../../Src/Kernel/OVR_Alg.h" />
