@@ -33,6 +33,12 @@ limitations under the License.
 #include <windows.h>
 #include <setupapi.h>
 
+#ifdef __MINGW32__
+#include <ddk/ntstatus.h>
+#include <ddk/ntapi.h>
+#include <ddk/ntifs.h>
+#endif //__MINGW32__
+
 //-------------------------------------------------------------------------------------
 // Define needed "hidsdi.h" functionality to avoid requiring DDK installation.
 // #include "hidsdi.h"
@@ -168,7 +174,7 @@ private:
 
     // Macros to declare and resolve needed functions from library.
 #define OVR_DECLARE_HIDFUNC(func, rettype, args)   \
-typedef rettype (__stdcall *PFn_##func) args;  \
+typedef rettype (OVR_STDCALL *PFn_##func) args;  \
 PFn_##func      func;
 #define OVR_RESOLVE_HIDFUNC(func) \
 func = (PFn_##func)::GetProcAddress(hHidLib, #func)
