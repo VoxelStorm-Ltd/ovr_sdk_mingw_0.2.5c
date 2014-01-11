@@ -181,6 +181,7 @@ bool HMDDeviceCreateDesc::MatchDevice(const String& path)
 //-------------------------------------------------------------------------------------
 
 
+/* this function is not currently called from anywhere
 const wchar_t* FormatDisplayStateFlags(wchar_t* buff, int length, DWORD flags)
 {
     buff[0] = 0;
@@ -198,6 +199,7 @@ const wchar_t* FormatDisplayStateFlags(wchar_t* buff, int length, DWORD flags)
         wcscat_s(buff, length, L"VGA_Compatible ");
     return buff;
 }
+*/
 
 
 //-------------------------------------------------------------------------------------
