@@ -30,6 +30,11 @@ limitations under the License.
 
 #include <tchar.h>
 
+// these may not be defined in earlier versions of wingdi.h
+#ifndef DISPLAY_DEVICE_ACTIVE
+#define DISPLAY_DEVICE_ACTIVE 0x00000001
+#endif
+
 namespace OVR { namespace Win32 {
 
 //-------------------------------------------------------------------------------------
