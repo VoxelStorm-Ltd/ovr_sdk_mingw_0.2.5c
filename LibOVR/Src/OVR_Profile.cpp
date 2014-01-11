@@ -64,12 +64,36 @@ String GetBaseOVRPath(bool create_dir)
 
 #if defined(OVR_OS_WIN32)
 
+#if defined(__MINGW32__)
+
+    path = String(getenv("LOCALAPPDATA"));
+    if(path.IsEmpty()) {
+      // Windows XP does not have %LOCALAPPDATA%; in this case, substitute manually
+      path = String(getenv("USERPROFILE"));
+      if(!path.IsEmpty()) {
+        // if we found their profile dir, append the assumed subdirs to that
+        path.AppendString("/Local Settings/Application Data");
+      } else {
+        // or if we still have nothing, fall back to APPDATA as a last resort
+        path = String(getenv("APPDATA"));
+      }
+    }
+    if(path.IsEmpty()) {
+      // super-last resort - if we really can't get any path, just use "here"
+      path = String(".");
+    }
+
+#else
+
     TCHAR data_path[MAX_PATH];
     SHGetFolderPath(0, CSIDL_LOCAL_APPDATA, NULL, 0, data_path);
     path = String(data_path);
     
+#endif
+
     path += "/Oculus";
 
+#ifndef __MINGW32__
     if (create_dir)
     {   // Create the Oculus directory if it doesn't exist
         WCHAR wpath[128];
@@ -83,6 +107,8 @@ String GetBaseOVRPath(bool create_dir)
         }
     }
         
+#endif //__MINGW32__
+
 #elif defined(OVR_OS_MAC)
 
     const char* home = getenv("HOME");
