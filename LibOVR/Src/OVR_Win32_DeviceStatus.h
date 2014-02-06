@@ -27,6 +27,12 @@ limitations under the License.
 #ifndef OVR_Win32_DeviceStatus_h
 #define OVR_Win32_DeviceStatus_h
 
+#ifndef WINVER
+  #define WINVER 0x0501
+#endif // WINVER
+#ifndef _WIN32_WINNT
+  #define _WIN32_WINNT 0x0501
+#endif // _WIN32_WINNT
 #include <windows.h>
 #include "Kernel/OVR_String.h"
 #include "Kernel/OVR_RefCount.h"

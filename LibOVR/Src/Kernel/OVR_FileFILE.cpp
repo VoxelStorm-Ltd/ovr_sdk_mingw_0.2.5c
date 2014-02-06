@@ -61,7 +61,13 @@ static int SFerror ()
 };
 
 #ifdef OVR_OS_WIN32
-#include "windows.h"
+#ifndef WINVER
+  #define WINVER 0x0501
+#endif // WINVER
+#ifndef _WIN32_WINNT
+  #define _WIN32_WINNT 0x0501
+#endif // _WIN32_WINNT
+#include <windows.h>
 // A simple helper class to disable/enable system error mode, if necessary
 // Disabling happens conditionally only if a drive name is involved
 class SysErrorModeDisabler

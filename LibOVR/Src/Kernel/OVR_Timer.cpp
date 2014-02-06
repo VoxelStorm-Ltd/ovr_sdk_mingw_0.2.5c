@@ -28,6 +28,12 @@ limitations under the License.
 #include "OVR_Log.h"
 
 #if defined (OVR_OS_WIN32)
+#ifndef WINVER
+  #define WINVER 0x0501
+#endif // WINVER
+#ifndef _WIN32_WINNT
+  #define _WIN32_WINNT 0x0501
+#endif // _WIN32_WINNT
 #include <windows.h>
 #elif defined(OVR_OS_ANDROID)
 #include <time.h>
