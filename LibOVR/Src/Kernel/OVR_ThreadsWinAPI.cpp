@@ -33,7 +33,7 @@ limitations under the License.
 
 // For _beginthreadex / _endtheadex
 #include <process.h>
-Ů
+
 namespace OVR {
 
 
