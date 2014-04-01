@@ -84,7 +84,6 @@
 					<Add option="-g" />
 					<Add option="-Og" />
 					<Add option="-DOVR_BUILD_DEBUG" />
-					<Add option="-DWIN32" />
 					<Add option="-D_DEBUG" />
 					<Add option="-D_LIB" />
 				</Compiler>
@@ -99,7 +98,6 @@
 				<Option createDefFile="1" />
 				<Compiler>
 					<Add option="-Ofast" />
-					<Add option="-DWIN32" />
 					<Add option="-DNDEBUG" />
 					<Add option="-D_LIB" />
 				</Compiler>
@@ -116,7 +114,6 @@
 					<Add option="-g" />
 					<Add option="-Og" />
 					<Add option="-DOVR_BUILD_DEBUG" />
-					<Add option="-DWIN32" />
 					<Add option="-D_DEBUG" />
 					<Add option="-D_LIB" />
 				</Compiler>
@@ -131,7 +128,6 @@
 				<Option createDefFile="1" />
 				<Compiler>
 					<Add option="-Ofast" />
-					<Add option="-DWIN32" />
 					<Add option="-DNDEBUG" />
 					<Add option="-D_LIB" />
 				</Compiler>
@@ -195,7 +191,6 @@
 				<Option createDefFile="1" />
 				<Compiler>
 					<Add option="-Ofast" />
-					<Add option="-DWIN32" />
 					<Add option="-DNDEBUG" />
 					<Add option="-D_LIB" />
 				</Compiler>
@@ -209,10 +204,6 @@
 			<Add alias="Win32_All" targets="Win32_Debug;Win32_Release;" />
 			<Add alias="Win64_All" targets="Win64_Debug;Win64_Release;" />
 		</VirtualTargets>
-		<Compiler>
-			<Add option="-D_WIN32_WINNT=0x0501" />
-			<Add option="-DWINVER=0x0501" />
-		</Compiler>
 		<Unit filename="../../Include/OVR.h" />
 		<Unit filename="../../Src/Kernel/OVR_Alg.cpp" />
 		<Unit filename="../../Src/Kernel/OVR_Alg.h" />
@@ -257,7 +248,12 @@
 			<Option target="Mac64_Debug" />
 			<Option target="Mac64_Release" />
 		</Unit>
-		<Unit filename="../../Src/Kernel/OVR_ThreadsWinAPI.cpp" />
+		<Unit filename="../../Src/Kernel/OVR_ThreadsWinAPI.cpp">
+			<Option target="Win32_Debug" />
+			<Option target="Win32_Release" />
+			<Option target="Win64_Debug" />
+			<Option target="Win64_Release" />
+		</Unit>
 		<Unit filename="../../Src/Kernel/OVR_Timer.cpp" />
 		<Unit filename="../../Src/Kernel/OVR_Timer.h" />
 		<Unit filename="../../Src/Kernel/OVR_Types.h" />

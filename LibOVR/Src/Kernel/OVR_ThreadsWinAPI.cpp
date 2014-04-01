@@ -4,20 +4,20 @@ Filename    :   OVR_ThreadsWinAPI.cpp
 Platform    :   WinAPI
 Content     :   Windows specific thread-related (safe) functionality
 Created     :   September 19, 2012
-Notes       : 
+Notes       :
 
 Copyright   :   Copyright 2013 Oculus VR, Inc. All Rights reserved.
 
-Licensed under the Oculus VR SDK License Version 2.0 (the "License"); 
-you may not use the Oculus VR SDK except in compliance with the License, 
-which is provided at the time of installation or download, or which 
+Licensed under the Oculus VR SDK License Version 2.0 (the "License");
+you may not use the Oculus VR SDK except in compliance with the License,
+which is provided at the time of installation or download, or which
 otherwise accompanies this software in either electronic or hard copy form.
 
 You may obtain a copy of the License at
 
-http://www.oculusvr.com/licenses/LICENSE-2.0 
+http://www.oculusvr.com/licenses/LICENSE-2.0
 
-Unless required by applicable law or agreed to in writing, the Oculus VR SDK 
+Unless required by applicable law or agreed to in writing, the Oculus VR SDK
 distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
@@ -33,7 +33,7 @@ limitations under the License.
 
 // For _beginthreadex / _endtheadex
 #include <process.h>
-
+Ů
 namespace OVR {
 
 
@@ -46,7 +46,7 @@ class MutexImpl : public NewOverrideBase
     HANDLE            hMutexOrSemaphore;
     bool              Recursive;
     volatile unsigned LockCount;
-    
+
     friend class WaitConditionImpl;
 
 public:
@@ -64,7 +64,7 @@ public:
 
 // *** Constructor/destructor
 MutexImpl::MutexImpl(bool recursive)
-{    
+{
     Recursive                   = recursive;
     LockCount                   = 0;
     hMutexOrSemaphore           = Recursive ? CreateMutex(NULL, 0, NULL) : CreateSemaphore(NULL, 1, 1, NULL);
@@ -133,7 +133,7 @@ bool    MutexImpl::IsSignaled() const
 // *** Actual Mutex class implementation
 
 Mutex::Mutex(bool recursive)
-{    
+{
     pImpl = new MutexImpl(recursive);
 }
 Mutex::~Mutex()
@@ -194,7 +194,7 @@ void Event::updateState(bool newState, bool newTemp, bool mustNotify)
     State       = newState;
     Temporary   = newTemp;
     if (mustNotify)
-        StateWaitCondition.NotifyAll();    
+        StateWaitCondition.NotifyAll();
 }
 
 
@@ -203,7 +203,7 @@ void Event::updateState(bool newState, bool newTemp, bool mustNotify)
 
 // Internal implementation class
 class WaitConditionImpl : public NewOverrideBase
-{   
+{
     // Event pool entries for extra events
     struct EventPoolEntry  : public NewOverrideBase
     {
@@ -211,12 +211,12 @@ class WaitConditionImpl : public NewOverrideBase
         EventPoolEntry  *pNext;
         EventPoolEntry  *pPrev;
     };
-    
+
     Lock                WaitQueueLoc;
     // Stores free events that can be used later
     EventPoolEntry  *   pFreeEventList;
-    
-    // A queue of waiting objects to be signaled    
+
+    // A queue of waiting objects to be signaled
     EventPoolEntry*     pQueueHead;
     EventPoolEntry*     pQueueTail;
 
@@ -266,8 +266,8 @@ WaitConditionImpl::~WaitConditionImpl()
         p = p->pNext;
         // Delete old
         ::CloseHandle(pentry->hEvent);
-        delete pentry;  
-    }   
+        delete pentry;
+    }
     // Shouldn't we also consider the queue?
 
     // To be safe
@@ -286,7 +286,7 @@ WaitConditionImpl::EventPoolEntry* WaitConditionImpl::GetNewEvent()
     if (pFreeEventList)
     {
         pentry          = pFreeEventList;
-        pFreeEventList  = pFreeEventList->pNext;        
+        pFreeEventList  = pFreeEventList->pNext;
     }
     else
     {
@@ -297,7 +297,7 @@ WaitConditionImpl::EventPoolEntry* WaitConditionImpl::GetNewEvent()
         // Non-signaled manual event
         pentry->hEvent  = ::CreateEvent(NULL, TRUE, 0, NULL);
     }
-    
+
     return pentry;
 }
 
@@ -319,13 +319,13 @@ void WaitConditionImpl::QueuePush(EventPoolEntry* pentry)
     {
         pentry->pPrev       = pQueueTail;
         pQueueTail->pNext   = pentry;
-        pentry->pNext       = 0;        
-        pQueueTail          = pentry;       
+        pentry->pNext       = 0;
+        pQueueTail          = pentry;
     }
     else
     {
         // No items in queue
-        pentry->pNext   = 
+        pentry->pNext   =
         pentry->pPrev   = 0;
         pQueueHead      =
         pQueueTail      = pentry;
@@ -341,9 +341,9 @@ WaitConditionImpl::EventPoolEntry* WaitConditionImpl::QueuePop()
     {
         // More items after this one? just grab the first item
         if (pQueueHead->pNext)
-        {       
+        {
             pQueueHead  = pentry->pNext;
-            pQueueHead->pPrev = 0;      
+            pQueueHead->pPrev = 0;
         }
         else
         {
@@ -351,7 +351,7 @@ WaitConditionImpl::EventPoolEntry* WaitConditionImpl::QueuePop()
             pQueueTail =
             pQueueHead = 0;
         }
-    }   
+    }
     return pentry;
 }
 
@@ -365,7 +365,7 @@ void WaitConditionImpl::QueueFindAndRemove(EventPoolEntry* pentry)
         // Entry found? Remove.
         if (p == pentry)
         {
-            
+
             // Remove the node form the list
             // Prev link
             if (pentry->pPrev)
@@ -385,7 +385,7 @@ void WaitConditionImpl::QueueFindAndRemove(EventPoolEntry* pentry)
         p = p->pNext;
     }
 }
-    
+
 
 bool WaitConditionImpl::Wait(Mutex *pmutex, unsigned delay)
 {
@@ -397,7 +397,7 @@ bool WaitConditionImpl::Wait(Mutex *pmutex, unsigned delay)
     // Mutex must have been locked
     if (lockCount == 0)
         return 0;
-    
+
     // Add an object to the wait queue
     WaitQueueLoc.DoLock();
     QueuePush(pentry = GetNewEvent());
@@ -437,7 +437,7 @@ repeat_wait:
     switch(waitResult)
     {
         case WAIT_ABANDONED:
-        case WAIT_OBJECT_0: 
+        case WAIT_OBJECT_0:
             result = 1;
             // Wait was successful, therefore the event entry should already be removed
             // So just add entry back to a free list
@@ -448,7 +448,7 @@ repeat_wait:
             // Messages in WINDOWS queue
             {
                 MSG msg;
-                PeekMessage(&msg, NULL, 0U, 0U, PM_NOREMOVE);             
+                PeekMessage(&msg, NULL, 0U, 0U, PM_NOREMOVE);
                 WaitQueueLoc.Unlock();
                 goto repeat_wait;
             }
@@ -462,7 +462,7 @@ repeat_wait:
 
     // Re-aquire the mutex
     for(i=0; i<lockCount; i++)
-        pmutex->DoLock(); 
+        pmutex->DoLock();
 
     // Return the result
     return result;
@@ -472,11 +472,11 @@ repeat_wait:
 void WaitConditionImpl::Notify()
 {
     Lock::Locker   lock(&WaitQueueLoc);
-    
+
     // Pop last entry & signal it
-    EventPoolEntry* pentry = QueuePop();    
+    EventPoolEntry* pentry = QueuePop();
     if (pentry)
-        ::SetEvent(pentry->hEvent); 
+        ::SetEvent(pentry->hEvent);
 }
 
 // Notify a condition, releasing all objects waiting
@@ -485,7 +485,7 @@ void WaitConditionImpl::NotifyAll()
     Lock::Locker   lock(&WaitQueueLoc);
 
     // Pop and signal all events
-    // NOTE : There is no need to release the events, it's the waiters job to do so 
+    // NOTE : There is no need to release the events, it's the waiters job to do so
     EventPoolEntry* pentry = QueuePop();
     while (pentry)
     {
@@ -506,7 +506,7 @@ WaitCondition::~WaitCondition()
 {
     delete pImpl;
 }
-    
+
 // Wait without a mutex
 bool    WaitCondition::Wait(Mutex *pmutex, unsigned delay)
 {
@@ -542,14 +542,14 @@ __declspec(thread)  Thread*    pCurrentThread      = 0;
 // *** Thread constructors.
 
 Thread::Thread(UPInt stackSize, int processor)
-{    
+{
     CreateParams params;
     params.stackSize = stackSize;
     params.processor = processor;
     Init(params);
 }
 
-Thread::Thread(Thread::ThreadFn threadFunction, void*  userHandle, UPInt stackSize, 
+Thread::Thread(Thread::ThreadFn threadFunction, void*  userHandle, UPInt stackSize,
                  int processor, Thread::ThreadState initialState)
 {
     CreateParams params(threadFunction, userHandle, stackSize, processor, initialState);
@@ -562,7 +562,7 @@ Thread::Thread(const CreateParams& params)
 }
 void Thread::Init(const CreateParams& params)
 {
-    // Clear the variables    
+    // Clear the variables
     ThreadFlags     = 0;
     ThreadHandle    = 0;
     IdValue         = 0;
@@ -585,8 +585,8 @@ Thread::~Thread()
     // Thread should not running while object is being destroyed,
     // this would indicate ref-counting issue.
     //OVR_ASSERT(IsRunning() == 0);
-  
-    // Clean up thread.    
+
+    // Clean up thread.
     CleanupSystemThread();
     ThreadHandle = 0;
 }
@@ -597,11 +597,11 @@ Thread::~Thread()
 // Default Run implementation
 int Thread::Run()
 {
-    // Call pointer to function, if available.    
+    // Call pointer to function, if available.
     return (ThreadFunction) ? ThreadFunction(this, UserHandle) : 0;
 }
 void Thread::OnExit()
-{   
+{
 }
 
 // Finishes the thread and releases internal reference to it.
@@ -687,7 +687,7 @@ public:
     // for removal.
     static void RemoveRunningThread(Thread *pthread)
     {
-        OVR_ASSERT(pRunningThreads);        
+        OVR_ASSERT(pRunningThreads);
         pRunningThreads->removeThread(pthread);
     }
 
@@ -695,11 +695,11 @@ public:
     {
         // This is ok because only root thread can wait for other thread finish.
         if (pRunningThreads)
-        {           
+        {
             pRunningThreads->finishAllThreads();
             delete pRunningThreads;
             pRunningThreads = 0;
-        }        
+        }
     }
 };
 
@@ -726,7 +726,7 @@ int Thread::PRun()
     }
 
     // Call the virtual run function
-    ExitCode = Run();    
+    ExitCode = Run();
     return ExitCode;
 }
 
@@ -753,7 +753,7 @@ Thread*    Thread::GetThread()
 bool    Thread::GetExitFlag() const
 {
     return (ThreadFlags & OVR_THREAD_EXIT) != 0;
-}       
+}
 
 void    Thread::SetExitFlag(bool exitFlag)
 {
@@ -772,16 +772,16 @@ bool    Thread::IsFinished() const
 }
 // Determines whether the thread is suspended
 bool    Thread::IsSuspended() const
-{   
+{
     return SuspendCount > 0;
 }
 // Returns current thread state
 Thread::ThreadState Thread::GetThreadState() const
 {
     if (IsSuspended())
-        return Suspended;    
+        return Suspended;
     if (ThreadFlags & OVR_THREAD_STARTED)
-        return Running;    
+        return Running;
     return NotRunning;
 }
 
@@ -827,7 +827,7 @@ unsigned WINAPI Thread_Win32StartFn(void * phandle)
     // Signal the thread as done and release it atomically.
     pthread->FinishAndRelease();
     // At this point Thread object might be dead; however we can still pass
-    // it to RemoveRunningThread since it is only used as a key there.    
+    // it to RemoveRunningThread since it is only used as a key there.
     ThreadList::RemoveRunningThread(pthread);
     return (unsigned) result;
 }
@@ -848,7 +848,7 @@ bool Thread::Start(ThreadState initialState)
     // AddRef to us until the thread is finished.
     AddRef();
     ThreadList::AddRunningThread(this);
-    
+
     ExitCode        = 0;
     SuspendCount    = 0;
     ThreadFlags     = (initialState == Running) ? 0 : OVR_THREAD_START_SUSPENDED;
@@ -875,8 +875,8 @@ bool Thread::Suspend()
         return 0;
 
     if (::SuspendThread(ThreadHandle) != 0xFFFFFFFF)
-    {        
-        SuspendCount++;        
+    {
+        SuspendCount++;
         return 1;
     }
     return 0;
@@ -895,19 +895,19 @@ bool Thread::Resume()
     {
         if (oldCount == 1)
         {
-            if (::ResumeThread(ThreadHandle) != 0xFFFFFFFF)            
-                return 1;            
+            if (::ResumeThread(ThreadHandle) != 0xFFFFFFFF)
+                return 1;
         }
         else
         {
             return 1;
         }
-    }   
+    }
     return 0;
 }
 
 
-// Quits with an exit code  
+// Quits with an exit code
 void Thread::Exit(int exitCode)
 {
     // Can only exist the current thread.
@@ -916,13 +916,13 @@ void Thread::Exit(int exitCode)
     //    return;
 
     // Call the virtual OnExit function.
-    OnExit();   
+    OnExit();
 
     // Signal this thread object as done and release it's references.
     FinishAndRelease();
     ThreadList::RemoveRunningThread(this);
 
-    // Call the exit function.    
+    // Call the exit function.
     _endthreadex((unsigned)exitCode);
 }
 
