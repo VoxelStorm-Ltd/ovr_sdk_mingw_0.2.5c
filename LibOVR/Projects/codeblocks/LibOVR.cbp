@@ -202,8 +202,8 @@
 			</Target>
 		</Build>
 		<VirtualTargets>
-			<Add alias="Linu64_All" targets="Linux64_Debug;Linux64_Release;" />
 			<Add alias="Linux32_All" targets="Linux32_Debug;Linux32_Release;" />
+			<Add alias="Linux64_All" targets="Linux64_Debug;Linux64_Release;" />
 			<Add alias="Mac32_All" targets="Mac32_Debug;Mac32_Release;" />
 			<Add alias="Mac64_All" targets="Mac64_Debug;Mac64_Release;" />
 			<Add alias="Win32_All" targets="Win32_Debug;Win32_Release;" />
