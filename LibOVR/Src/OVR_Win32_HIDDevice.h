@@ -40,9 +40,12 @@ limitations under the License.
 #include <setupapi.h>
 
 #ifdef __MINGW32__
+#ifndef __MINGW64_VERSION_MAJOR
+// MinGW64 doesn't need the ddk headers - including them causes conflicts
 #include <ddk/ntstatus.h>
 #include <ddk/ntapi.h>
 #include <ddk/ntifs.h>
+#endif // __MINGW64_VERSION_MAJOR
 #endif //__MINGW32__
 
 //-------------------------------------------------------------------------------------
