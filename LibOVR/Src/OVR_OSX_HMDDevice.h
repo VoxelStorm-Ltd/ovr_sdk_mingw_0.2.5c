@@ -7,16 +7,16 @@ Authors     :   Michael Antonov
 
 Copyright   :   Copyright 2013 Oculus VR, Inc. All Rights reserved.
 
-Licensed under the Oculus VR SDK License Version 2.0 (the "License"); 
-you may not use the Oculus VR SDK except in compliance with the License, 
-which is provided at the time of installation or download, or which 
+Licensed under the Oculus VR SDK License Version 2.0 (the "License");
+you may not use the Oculus VR SDK except in compliance with the License,
+which is provided at the time of installation or download, or which
 otherwise accompanies this software in either electronic or hard copy form.
 
 You may obtain a copy of the License at
 
-http://www.oculusvr.com/licenses/LICENSE-2.0 
+http://www.oculusvr.com/licenses/LICENSE-2.0
 
-Unless required by applicable law or agreed to in writing, the Oculus VR SDK 
+Unless required by applicable law or agreed to in writing, the Oculus VR SDK
 distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
@@ -28,7 +28,7 @@ limitations under the License.
 #define OVR_OSX_HMDDevice_h
 
 #include "OVR_DeviceImpl.h"
-#include <Kernel/OVR_String.h>
+#include "Kernel/OVR_String.h"
 #include "OVR_Profile.h"
 
 namespace OVR { namespace OSX {
@@ -88,14 +88,14 @@ public:
     virtual bool GetDeviceInfo(DeviceInfo* info) const;
 
     // Requests the currently used default profile. This profile affects the
-    // settings reported by HMDInfo. 
+    // settings reported by HMDInfo.
     Profile* GetProfileAddRef() const;
 
     ProfileType GetProfileType() const
     {
         return (HResolution >= 1920) ? Profile_RiftDKHD : Profile_RiftDK1;
     }
-	
+
     void  SetScreenParameters(int x, int y, unsigned hres, unsigned vres, float hsize, float vsize)
     {
         DesktopX = x;
@@ -110,7 +110,7 @@ public:
     void SetDistortion(float eye2screen, const float* dks)
     {
         EyeToScreenDistance = eye2screen;
-        
+
         for (int i = 0; i < 4; i++)
             DistortionK[i] = dks[i];
         Contents |= Contents_Distortion;
@@ -137,7 +137,7 @@ protected:
 
 // HMDDevice represents an Oculus HMD device unit. An instance of this class
 // is typically created from the DeviceManager.
-//  After HMD device is created, we its sensor data can be obtained by 
+//  After HMD device is created, we its sensor data can be obtained by
 //  first creating a Sensor object and then wrappig it in SensorFusion.
 
 class HMDDevice : public DeviceImpl<OVR::HMDDevice>
@@ -151,13 +151,13 @@ public:
 
 
     // Requests the currently used default profile. This profile affects the
-    // settings reported by HMDInfo. 
+    // settings reported by HMDInfo.
     virtual Profile*    GetProfile() const;
     virtual const char* GetProfileName() const;
     virtual bool        SetProfileName(const char* name);
 
     // Query associated sensor.
-    virtual OVR::SensorDevice* GetSensor();  
+    virtual OVR::SensorDevice* GetSensor();
 
 protected:
     HMDDeviceCreateDesc* getDesc() const { return (HMDDeviceCreateDesc*)pCreateDesc.GetPtr(); }
