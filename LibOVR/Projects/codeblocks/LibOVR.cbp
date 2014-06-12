@@ -148,7 +148,6 @@
 					<Add option="-g" />
 					<Add option="-Og" />
 					<Add option="-DOVR_BUILD_DEBUG" />
-					<Add option="-DWIN32" />
 					<Add option="-D_DEBUG" />
 					<Add option="-D_LIB" />
 				</Compiler>
@@ -163,7 +162,6 @@
 				<Option createDefFile="1" />
 				<Compiler>
 					<Add option="-Ofast" />
-					<Add option="-DWIN32" />
 					<Add option="-DNDEBUG" />
 					<Add option="-D_LIB" />
 				</Compiler>
@@ -180,7 +178,6 @@
 					<Add option="-g" />
 					<Add option="-Og" />
 					<Add option="-DOVR_BUILD_DEBUG" />
-					<Add option="-DWIN32" />
 					<Add option="-D_DEBUG" />
 					<Add option="-D_LIB" />
 				</Compiler>
