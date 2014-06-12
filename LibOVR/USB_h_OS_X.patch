@@ -1,0 +1,48 @@
+diff -rupN /System/Library/Frameworks/IOKit.framework/Versions/A/Headers/usb/USB.h /tmp/USB.h
+--- /System/Library/Frameworks/IOKit.framework/Versions/A/Headers/usb/USB.h	2014-06-12 10:31:11.000000000 +0100
++++ /tmp/USB.h	2014-06-12 10:34:29.000000000 +0100
+@@ -581,7 +581,7 @@ typedef IOUSBDescriptorHeader *			IOUSBD
+ 	};
+ 	typedef struct IOUSBDeviceCapabilityContainerID		IOUSBDeviceCapabilityContainerID;
+ 	typedef IOUSBDeviceCapabilityContainerID *			IOUSBDeviceCapabilityContainerIDPtr;
+-#pragma options align=reset
++#pragma pack()
+ 	
+ /*!
+     @typedef IOUSBConfigurationDescriptor
+@@ -751,7 +751,7 @@ struct UASPipeDescriptor {
+ typedef struct 	UASPipeDescriptor	UASPipeDescriptor;
+ typedef 		UASPipeDescriptor * UASPipeDescriptorPtr;
+ 
+-#pragma options align=reset
++#pragma pack()
+ 
+ /*!
+     @typedef IOUSBHIDDescriptor
+@@ -803,7 +803,7 @@ struct IOUSBDeviceQualifierDescriptor
+ };
+ typedef struct IOUSBDeviceQualifierDescriptor	IOUSBDeviceQualifierDescriptor;
+ typedef IOUSBDeviceQualifierDescriptor *	IOUSBDeviceQualifierDescriptorPtr;
+-#pragma options align=reset
++#pragma pack()
+ 
+ /*!
+     @typedef IOUSBDFUDescriptor
+@@ -821,7 +821,7 @@ struct IOUSBDFUDescriptor 
+ typedef struct 	IOUSBDFUDescriptor 		IOUSBDFUDescriptor;
+ typedef 		IOUSBDFUDescriptor *	IOUSBDFUDescriptorPtr;
+ 
+-#pragma options align=reset
++#pragma pack()
+ 
+ /*!
+ @typedef IOUSBInterfaceAssociationDescriptor
+@@ -841,7 +841,7 @@ struct IOUSBInterfaceAssociationDescript
+ };
+ typedef struct IOUSBInterfaceAssociationDescriptor	IOUSBInterfaceAssociationDescriptor;
+ typedef IOUSBInterfaceAssociationDescriptor *	IOUSBInterfaceAssociationDescriptorPtr;
+-#pragma options align=reset
++#pragma pack()
+ 
+ /*!
+     @typedef USBStatus
