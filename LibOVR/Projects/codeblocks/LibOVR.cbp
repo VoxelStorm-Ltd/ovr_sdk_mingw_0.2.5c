@@ -87,10 +87,14 @@
 				<Compiler>
 					<Add option="-g" />
 					<Add option="-Og" />
+					<Add option="-m32" />
 					<Add option="-DOVR_BUILD_DEBUG" />
 					<Add option="-D_DEBUG" />
 					<Add option="-D_LIB" />
 				</Compiler>
+				<Linker>
+					<Add option="-m32" />
+				</Linker>
 			</Target>
 			<Target title="Linux32_Release">
 				<Option platforms="Unix;" />
@@ -102,9 +106,13 @@
 				<Option createDefFile="1" />
 				<Compiler>
 					<Add option="-Ofast" />
+					<Add option="-m32" />
 					<Add option="-DNDEBUG" />
 					<Add option="-D_LIB" />
 				</Compiler>
+				<Linker>
+					<Add option="-m32" />
+				</Linker>
 			</Target>
 			<Target title="Linux64_Debug">
 				<Option platforms="Unix;" />
